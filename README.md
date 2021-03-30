@@ -21,7 +21,7 @@ To setup this project on your own machine, clone or download this repo, and then
 
 * **Linux / MacOS** - Use the files in the data folder to complete the following steps:
 
-If you don't have it already, install Python - http://www.python.com
+If you don't have it already, install Python - http://www.python.org
 
 This should install the required Python packages:
 ```
