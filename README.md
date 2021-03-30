@@ -19,7 +19,7 @@ To setup this project on your own machine, clone or download this repo, and then
 
 **Windows**
 * If you don't have it already, install Python - http://www.python.org 
-  NOTE: As well as the defaults, ensure you select the *pip* and *Add Python to Environment Variables* or *Add Python to PATH* options during isntall.
+  NOTE: As well as the defaults, ensure you select the *pip* and *Add Python to PATH* or *Add Python to Environment Variables* options during isntall.
 * Run setup.bat and follow the prompts.
   NOTE: Just run it as normal, __NOT__ elevated to Administrator, or it will fail.
 
