@@ -17,11 +17,11 @@ It requires a trakt.tv account, but no Plex premium or Trakt VIP subscriptions.
 
 To setup this project on your own machine, clone or download this repo, and then:
 
-* **Windows** - 
+**Windows**
 * If you don't have it already, install Python - http://www.python.org (as well as the defaults, ensure you select the *pip* and *Add Python to Environment Variables* options during isntall.
 * Run setup.bat and follow the prompts. (NOTE: Just run it as normal, __NOT__ elevated to Administrator, or it will fail.)
 
-* **Linux / MacOS** - Use the files in the data folder to complete the following steps:
+**Linux / MacOS** - Use the files in the data folder to complete the following steps:
 
 If you don't have it already, install Python - http://www.python.org
 
