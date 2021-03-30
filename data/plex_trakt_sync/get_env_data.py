@@ -35,7 +35,7 @@ def get_env_data():
                 if user.friend is True:
                     print("     * " + user.title)
             print(" ")
-            name = input("    To use your main account (most likely) press enter, else enter the name of a managed user:")
+            name = input("    To use your default " + username + " account press enter (else enter the name of a managed user):")
             while name:
                 try:
                     useraccount = account.user(name)
