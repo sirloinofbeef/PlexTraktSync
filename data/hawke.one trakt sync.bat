@@ -4,7 +4,7 @@ taskkill /F /FI "windowtitle eq Hawke.one - Trakt Sync" /T
 cls
 
 :: Check for Python Installation
-python --version 2>NUL
+py --version 2>NUL
 if errorlevel 1 goto errorNoPython
 
 cls
