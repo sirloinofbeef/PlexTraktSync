@@ -8,7 +8,7 @@ title Hawke.one - Trakt Sync - Setup
 cls
 
 echo -----------------------------------------------------------------------------------
-echo  Hawke.one - Trakt Sync - Setup (beta 2.0)
+echo  Hawke.one - Trakt Sync - Setup (beta 2.1)
 echo -----------------------------------------------------------------------------------
 echo This project stores PyTrakt API keys (no passwords) in plain text on your system.
 echo If you do not want to have a file containing these on your system, you can not use this project.
@@ -42,30 +42,25 @@ echo Restoring default settings... Done!
 
 
 :START
-powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%cd%\Hawke.one Trakt Sync.lnk');$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
-powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%cd%\data\Sync Plex Server and Trakt.lnk');$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
+powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%cd%\Hawke.one Trakt Sync.lnk');$s.WorkingDirectory = '%cd%\data\';$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
+powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%cd%\data\Sync Plex Server and Trakt.lnk');$s.WorkingDirectory = '%cd%\data\';$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
 
 
 echo.
 SET /P SCHEDULED=Would you like to schedule sync to run daily? (Y/[N])?
 IF /I "%SCHEDULED%" NEQ "Y" GOTO :NOSCHEDULE
 SET /P SCHEDULED_TIME=What time would you like the sync to run (Use 24 hour time. eg: 01:00, 23:42)?
-SCHTASKS /CREATE /SC DAILY /TN "Plex Trakt Sync" /TR "%cd%\data\Scheduled Task - Sync Plex Server and Trakt.bat" /ST "%SCHEDULED_TIME%"
-echo.
+SCHTASKS /CREATE /SC DAILY /TN "Plex Trakt Sync" /TR "%cd%\data\Scheduled Task - Sync Plex Server and Trakt.bat" /ST "%SCHEDULED_TIME%" > nul
 
 :NOSCHEDULE
 SET /P STARTUP=Would you like to schedule sync to run on system start up? (Y/[N])?
 IF /I "%STARTUP%" NEQ "Y" GOTO :NOSTARTUP
-powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Start Menu\Programs\Startup\Hawke.one Trakt Sync.lnk');$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
-echo Creating startup routine... Done!
-echo.
+powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Start Menu\Programs\Startup\Hawke.one Trakt Sync.lnk');$s.WorkingDirectory = '%cd%\data\';$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
 
 :NOSTARTUP
 SET /P DESKTOPQ=Would you like to create a desktop shortcut to run sync manually? (Y/[N])?
 IF /I "%DESKTOPQ%" NEQ "Y" GOTO :NODESKTOP
-powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\Hawke.one Trakt Sync.lnk');$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
-echo Creating desktop shortcut... Done!
-echo.
+powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\Hawke.one Trakt Sync.lnk');$s.WorkingDirectory = '%cd%\data\';$s.TargetPath='%cd%\data\hawke.one trakt sync.bat';$s.IconLocation='%cd%\data\trakt.ico';$s.Save()"
 
 :NODESKTOP
 echo Once fully configured hawke.one will now sync with Plex:
