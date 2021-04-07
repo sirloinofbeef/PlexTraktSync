@@ -76,10 +76,14 @@ def get_env_data():
     print("      2 - Login to your Trakt account")
     print("      3 - Press the NEW APPLICATION button")
     print("      4 - Set the NAME field = hawke.one")
-    print("      5 - Set the REDIRECT URL field = urn:ietf:wg:oauth:2.0:oob (This has been copied to your clipboard for you)")
-
-    import pyperclip
-    pyperclip.copy("urn:ietf:wg:oauth:2.0:oob")
+    
+    import platform
+    if platform.system() == "Windows":
+        import pyperclip
+        pyperclip.copy("urn:ietf:wg:oauth:2.0:oob")
+        print("      5 - Set the REDIRECT URL field = urn:ietf:wg:oauth:2.0:oob (This has been copied to your clipboard for you)")
+    else:
+        print("      5 - Set the REDIRECT URL field = urn:ietf:wg:oauth:2.0:oob")
 
     print("      6 - Press the SAVE APP button")
 
