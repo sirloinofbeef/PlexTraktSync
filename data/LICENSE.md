@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2021 SirLoinOfBeef
+Copyright (c) 2021 SirLoinOfBeef 
 Copyright (c) 2019 Alexander Theimer  
 Copyright (c) 2019-2021 twolaw  
 Copyright (c) 2020-2021 Elan Ruusamäe  
