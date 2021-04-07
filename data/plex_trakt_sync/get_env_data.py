@@ -101,7 +101,7 @@ def get_env_data():
 
     print("\n\n")
     print("You're all done!\n")
-    print("PLEASE NOTE: Your initial sync will take some time.") 
+    print("PLEASE NOTE: Your initial sync will take some time (up to 12 hours).") 
     print("Information is then cached to speed up future syncs. Please bear in mind that hawke.one has a VERY large library.\n")
     print("Plex / Trakt accounts may be altered by re-running setup, or deleting the .env and .pytrakt.json files.")
     print("Expert settings may also be altered within the config.json file.")
