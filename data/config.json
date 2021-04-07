@@ -4,7 +4,7 @@
         "liked_lists": true,
         "watchlist": true,
         "watched_status": true,
-        "collection": true,
+        "collection": false,
         "ratings": true
     },
     "xbmc-providers": {
