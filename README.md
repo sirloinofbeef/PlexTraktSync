@@ -3,8 +3,8 @@
 This project adds a two-way-sync between trakt.tv and hawke.one. 
 It requires a trakt.tv account, but no Plex premium or Trakt VIP subscriptions.
 
-## Latest version
-beta 2.1 - released 31/03/2021
+## Downloads
+Download the latest version from our [wiki](https://github.com/sirloinofbeef/PlexTraktSync/wiki).
 
 ## Features
 
