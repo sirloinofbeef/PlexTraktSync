@@ -8,13 +8,11 @@ Download the latest version from our [wiki](https://github.com/sirloinofbeef/Ple
 
 ## Features
 
- - Media in Plex are added to Trakt collection
- - Ratings are synced (if ratings differ, Trakt takes precedence)
- - Watched status are synced (dates are not reported from Trakt to Plex)
- - Liked lists in Trakt are downloaded and all movies in Plex belonging to that
-   list are added
- - You can edit the data/config.json file (it's just plain text) to choose what to sync
- - None of the above requires a Plex Pass or Trakt VIP membership.
+ - **Two way Trakt - Plex sync without the need for a Plex Pass or Trakt VIP membership!**
+ - Media in Plex can be added to Trakt collection _(Option disabled by default)_
+ - Ratings can be synced (if ratings differ, Trakt takes precedence) _(Option disabled by default)_
+ - Watched status can be synced (dates are not reported from Trakt to Plex) _(Option enabled by default)_
+ - Liked lists in Trakt are downloaded and all movies in Plex belonging to that list can be added _(Option disabled by default)_
 
 ## Notes
 
