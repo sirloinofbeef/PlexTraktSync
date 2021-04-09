@@ -7,14 +7,17 @@ taskkill /F /FI "WindowTitle eq  Hawke.one - Trakt Sync" /T
 title Hawke.one - Trakt Sync - Setup
 cls
 
+for /f "delims=" %%a in (data\plex_trakt_sync\version.txt) do set "version=%%a"&goto :endversion
+:endversion
+
 echo -----------------------------------------------------------------------------------
-echo  Hawke.one - Trakt Sync - Setup (1.2)
+echo  Hawke.one - Trakt Sync v%version% - Setup
 echo -----------------------------------------------------------------------------------
+
 echo This project stores PyTrakt API keys (no passwords) in plain text on your system.
 echo If you do not want to have a file containing these on your system, you can not use this project.
 echo.
-echo The entire project is open source (just open the data folder, it's all there),
-echo and is based upon the work of Taxel: https://github.com/Taxel/PlexTraktSync
+echo The entire project is open source. Just open the data folder, it's all there :)
 echo.
 SET /P APICONT="Would you like to continue? ([Y]/N)?"
 IF /I "%APICONT%" EQU "N" GOTO :ENDIT
@@ -29,13 +32,15 @@ IF NOT EXIST "%cd%\Hawke.one Trakt Sync.lnk" goto :START
 echo WARNING: Setup has already been run!
 echo Continuing will reset the configuration (including scheduled tasks and startup routines).
 echo.
-SET /P RESETAPP="Reset to default values and setup from scratch? (Y/[N])?"
+SET /P RESETAPP="Reset to default values, remove cache and setup from scratch? (Y/[N])?"
 IF /I "%RESETAPP%" NEQ "Y" GOTO :ENDIT
 schtasks /delete /tn "Plex Trakt Sync" /f >nul 2>&1
 del "%userprofile%\Start Menu\Programs\Startup\Hawke.one Trakt Sync.lnk" /f >nul 2>&1
 del "%userprofile%\Desktop\Hawke.one Trakt Sync.lnk" /f >nul 2>&1
 del "data\.env" /f >nul 2>&1
 del ".pytrakt.json" /f >nul 2>&1
+rmdir /q /s "data\__pycache__" >nul 2>&1
+rmdir /q /s "data\plex_trakt_sync\__pycache__" >nul 2>&1
 echo Restoring default settings... Done!
 
 

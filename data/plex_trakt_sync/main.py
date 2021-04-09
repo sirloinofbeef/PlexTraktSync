@@ -18,6 +18,22 @@ from plex_trakt_sync.trakt_list_util import TraktListUtil
 from plex_trakt_sync.config import CONFIG
 from plex_trakt_sync.logging import logging
 
+
+from urllib.request import urlopen
+import urllib
+
+# ------------- START VERSION CHECK ------------------------
+data = urlopen("https://raw.githubusercontent.com/sirloinofbeef/PlexTraktSync/master/data/plex_trakt_sync/version.txt")
+vlatest = data.readline().decode('utf8').rstrip()
+
+with open('version.txt') as f: vinstalled = f.readline()
+
+if vlatest == vinstalled:
+    print("You are using the latest version: v" + vinstalled + "\n")
+else:
+    print("An update is available!\nInstalled: v" + vinstalled + "\nNew:       v" + vlatest + "\n\nPlease update from https://github.com/sirloinofbeef/PlexTraktSync/wiki\n")
+# ------------- END VERSION CHECK ------------------------
+
 requests_cache.install_cache(trakt_cache)
 trakt_post_wait = 1.2  # delay in sec between trakt post requests to respect rate limit
 

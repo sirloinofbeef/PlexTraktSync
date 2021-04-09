@@ -100,7 +100,7 @@ def get_env_data():
     #client_id, client_secret = trakt.core._get_client_info()
     client_id = input("      7 - Copy and paste the displayed Client ID: ")
     client_secret = input("      8 - Copy and paste the displayed Client secret: ")
-    input("\n    We will now generate a user code and open https://trakt.tv/activate for you to authenticate the app.\n    Press any key to continue...")
+    input("\n    We will now generate a user code and open https://trakt.tv/activate for you to authenticate the app.\n    Press Enter to continue...")
 
     if platform.system() == "Windows":
             webbrowser.open('https://trakt.tv/activate')
