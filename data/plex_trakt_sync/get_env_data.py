@@ -4,6 +4,7 @@ import trakt.users
 import webbrowser
 import getpass
 import stdiomask
+import platform
 
 from plex_trakt_sync.config import CONFIG
 from plex_trakt_sync.path import pytrakt_file
@@ -72,24 +73,27 @@ def get_env_data():
     print("Now we'll setup the Trakt part of things:")
     print(" ")
     print("    Create the required Trakt client ID and secret by completing the following steps:")
-    print("      1 - Press enter below to open http://trakt.tv/oauth/applications")
-    print("      2 - Login to your Trakt account")
-    print("      3 - Press the NEW APPLICATION button")
-    print("      4 - Set the NAME field = hawke.one")
+
     
-    import platform
+
     if platform.system() == "Windows":
+        print("      1 - Press enter below to open http://trakt.tv/oauth/applications")
+        print("      2 - Login to your Trakt account")
+        print("      3 - Press the NEW APPLICATION button")
+        print("      4 - Set the NAME field = hawke.one")
         import pyperclip
         pyperclip.copy("urn:ietf:wg:oauth:2.0:oob")
         print("      5 - Set the REDIRECT URL field = urn:ietf:wg:oauth:2.0:oob (This has been copied to your clipboard for you)")
+        input("\n    Press Enter to open http://trakt.tv/oauth/applications and complete steps 1-6: ")
+        webbrowser.open('http://trakt.tv/oauth/applications')
     else:
+        print("      1 - Open http://trakt.tv/oauth/applications on any computer")
+        print("      2 - Login to your Trakt account")
+        print("      3 - Press the NEW APPLICATION button")
+        print("      4 - Set the NAME field = hawke.one")
         print("      5 - Set the REDIRECT URL field = urn:ietf:wg:oauth:2.0:oob")
 
     print("      6 - Press the SAVE APP button")
-
-
-    input("\n    Press Enter to open http://trakt.tv/oauth/applications and complete steps 1-6: ")
-    webbrowser.open('http://trakt.tv/oauth/applications')
 
     print("\n    Once steps 1-6 are completed, please proceed to steps 7-8 below:\n")
 
@@ -97,8 +101,11 @@ def get_env_data():
     client_id = input("      7 - Copy and paste the displayed Client ID: ")
     client_secret = input("      8 - Copy and paste the displayed Client secret: ")
     input("\n    We will now generate a user code and open https://trakt.tv/activate for you to authenticate the app.\n    Press any key to continue...")
-    webbrowser.open('https://trakt.tv/activate')
-    print("\n")
+
+    if platform.system() == "Windows":
+            webbrowser.open('https://trakt.tv/activate')
+            print("\n")
+
     trakt.init(client_id=client_id, client_secret=client_secret, store=True)
     trakt_user = trakt.users.User('me')
     CONFIG["TRAKT_USERNAME"] = trakt_user.username
