@@ -19,13 +19,17 @@ def get_env_data():
         username = input("    Please enter your Plex username: ")
         password = stdiomask.getpass(prompt="    Please enter your Plex password: ")
 
-        print("\nNext we will need your hawke.one server name:\n\n    The server name is displayed top left (under the library title) when viewing a hawke.one library here:\n    https://app.plex.tv/desktop \n\n    Your server name will most likely be one of the following:")
-        print("     * plex1.hawke.one")
-        print("     * plex2.hawke.one")
-        print("     * plex3.hawke.one")
-        print("     * plex4.hawke.one")
-        servername = input("\n    Please enter your hawke.one server name: ")
-        print("    Checking server...")
+        print("\nNext we will need your server name:\n\n    The server name is displayed top left (under the library title) when viewing a library on that server:\n    https://app.plex.tv/desktop \n\n    For Hawke.one your server name will most likely be one of the following:")
+        print("     1) plex1.hawke.one (usually for Golden Company)")
+        print("     2) plex2.hawke.one (usually for Nightswatch)")
+        print("     3) plex3.hawke.one (usually for Kings Guard")
+        print("     4) plex4.hawke.one (usually for Nightswatch)")
+        servername = input("\n    Please select you server (1-4), or enter your custom server name: ")
+        if servername == "1": servername = "plex1.hawke.one"
+        if servername == "2": servername = "plex2.hawke.one"
+        if servername == "3": servername = "plex3.hawke.one"
+        if servername == "4": servername = "plex4.hawke.one"
+        print("    Verifying server...")
         account = MyPlexAccount(username, password)
         plex = account.resource(servername).connect()  # returns a PlexServer instance
         token = plex._token
@@ -80,7 +84,7 @@ def get_env_data():
         print("      1 - Press enter below to open http://trakt.tv/oauth/applications")
         print("      2 - Login to your Trakt account")
         print("      3 - Press the NEW APPLICATION button")
-        print("      4 - Set the NAME field = hawke.one")
+        print("      4 - Set the NAME field = hawke.one (or something else meaningful)")
         import pyperclip
         pyperclip.copy("urn:ietf:wg:oauth:2.0:oob")
         print("      5 - Set the REDIRECT URL field = urn:ietf:wg:oauth:2.0:oob (This has been copied to your clipboard for you)")
@@ -100,9 +104,10 @@ def get_env_data():
     #client_id, client_secret = trakt.core._get_client_info()
     client_id = input("      7 - Copy and paste the displayed Client ID: ")
     client_secret = input("      8 - Copy and paste the displayed Client secret: ")
-    input("\n    We will now generate a user code and open https://trakt.tv/activate for you to authenticate the app.\n    Press Enter to continue...")
+
 
     if platform.system() == "Windows":
+            input("\n    We will now generate a user code and open https://trakt.tv/activate for you to authenticate the app.\n    Press Enter to continue...")
             webbrowser.open('https://trakt.tv/activate')
             print("\n")
 
@@ -112,8 +117,6 @@ def get_env_data():
 
     print("\n\n")
     print("You're all done!\n")
-    print("PLEASE NOTE: Your initial sync will take some time (up to 12 hours).") 
-    print("Information is then cached to speed up future syncs. Please bear in mind that hawke.one has a VERY large library.\n")
     print("Plex / Trakt accounts may be altered by re-running setup, or deleting the .env and .pytrakt.json files.")
     print("Expert settings may also be altered within the config.json file.")
     print(" ")
