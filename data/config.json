@@ -11,6 +11,10 @@
         "movies": "imdb",
         "shows": "tvdb"
     },
+    "display-log": {
+        "movies": "true",
+        "shows": "true"
+    },
     "excluded-libraries": [
         "Private",
         "Family Holidays"

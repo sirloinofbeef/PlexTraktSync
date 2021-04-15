@@ -1,2 +1,3 @@
 @echo off
-start "" "Sync Plex Server and Trakt.lnk"
+SET mypath=%~dp0
+start "" "%mypath:~0,-1%\Sync Plex Server and Trakt.lnk"
