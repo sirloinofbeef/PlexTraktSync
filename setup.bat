@@ -5,6 +5,10 @@ taskkill /F /FI "WindowTitle eq  Hawke.one - Trakt Sync - Setup" /T
 taskkill /F /FI "WindowTitle eq  Hawke.one - Trakt Sync" /T
 
 title Hawke.one - Trakt Sync - Setup
+
+SET mypath=%~dp0
+cd %mypath%\
+
 cls
 
 for /f "delims=" %%a in (data\plex_trakt_sync\version.txt) do set "version=%%a"&goto :endversion
@@ -22,6 +26,7 @@ echo.
 SET /P APICONT="Would you like to continue? ([Y]/N)?"
 IF /I "%APICONT%" EQU "N" GOTO :ENDIT
 
+echo.
 echo Checking for Python...
 :: Check for Python Installation
 py --version 2>NUL
@@ -29,11 +34,20 @@ if errorlevel 1 goto errorNoPython
 echo.
 
 IF NOT EXIST "%cd%\Hawke.one Trakt Sync.lnk" goto :START
-echo WARNING: Setup has already been run!
-echo Continuing will reset the configuration (including scheduled tasks and startup routines).
+
+echo WARNING: SETUP HAS ALRADY BEEN RUN!
 echo.
-SET /P RESETAPP="Reset to default values, remove cache and setup from scratch? (Y/[N])?"
-IF /I "%RESETAPP%" NEQ "Y" GOTO :ENDIT
+echo What would you like to do?
+echo  1. Reset all settings and start again from scratch
+:: echo  2. Configure the script to work with multiple servers
+echo  2. Cancel
+echo.
+SET /P CONFIGCHOICE="Please enter your choice (1 -2): "
+IF /I "%CONFIGCHOICE%"=="1" GOTO :RESET
+IF /I "%CONFIGCHOICE%"=="3" GOTO :ADDSERVER
+GOTO :ENDIT
+
+:RESET
 schtasks /delete /tn "Plex Trakt Sync" /f >nul 2>&1
 del "%userprofile%\Start Menu\Programs\Startup\Hawke.one Trakt Sync.lnk" /f >nul 2>&1
 del "%userprofile%\Desktop\Hawke.one Trakt Sync.lnk" /f >nul 2>&1
@@ -41,6 +55,7 @@ del "data\.env" /f >nul 2>&1
 del ".pytrakt.json" /f >nul 2>&1
 rmdir /q /s "data\__pycache__" >nul 2>&1
 rmdir /q /s "data\plex_trakt_sync\__pycache__" >nul 2>&1
+del /q "data\configs\*"
 echo Restoring default settings... Done!
 
 
@@ -99,5 +114,10 @@ echo Press any key to exit
 echo.
 pause > nul
 
+
+:ADDSERVER
+cls
+cd data
+py add_server.py
 
 :ENDIT
