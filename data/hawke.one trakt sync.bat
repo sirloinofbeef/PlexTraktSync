@@ -1,6 +1,10 @@
 @echo off
 echo Killing an running versions of this script...
 taskkill /F /FI "windowtitle eq Hawke.one - Trakt Sync" /T
+
+SET mypath=%~dp0
+cd %mypath%\
+
 cls
 
 :: Check for Python Installation
@@ -12,13 +16,8 @@ cls
 title Hawke.one - Trakt Sync
 color 04
 
-echo -----------------------------------------------------------------------------------
-echo  Hawke.one - Trakt Sync started on %date% at %time%
-echo -----------------------------------------------------------------------------------
+
 py main.py
-echo.
-echo Press any key to exit
-pause > nul
 goto:eof
 
 :errorNoPython
