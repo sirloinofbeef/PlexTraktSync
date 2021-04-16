@@ -570,4 +570,4 @@ def main():
     m, s = divmod(timedelta, 60)
     logging.info("Completed full sync in " + (m>0) * "{:.0f} min ".format(m) + (s>0) * "{:.1f} seconds".format(s))
     print("Completed server sync in " + (m>0) * "{:.0f} min ".format(m) + (s>0) * "{:.1f} seconds\n\n".format(s))
-    input("Press any key to exit")
+    input("Press enter to exit")
